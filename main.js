@@ -8,7 +8,7 @@ import Stack from "./Stack.js";
 	let str = "long long string";
 	let reversed = "";
 	const stack = new Stack(str.length);
-	stack.add(...str);
+	stack.push(...str);
 	//	stack.display();
 	const length = stack.length();
 
@@ -19,14 +19,14 @@ import Stack from "./Stack.js";
 	console.log({ string: str, reversed });
 })();
 
-// postfix evaluation
+// postfix evaluation bi
 
 (() => {
-	console.log("\n\nEvaluate Postfix");
+	console.log("\n\nEvaluate Postfix With Two Numbers");
 
-	const postfixEvaluate = expression => {
+	const evaluatePostfix_bi = expression => {
 		const stack = new Stack();
-		stack.add(...expression.split(" "));
+		stack.push(...expression.split(" "));
 
 		const operator = stack.pop();
 		const number2 = parseFloat(stack.pop());
@@ -48,10 +48,39 @@ import Stack from "./Stack.js";
 		}
 	};
 
-	console.log(postfixEvaluate("5 2 +")); // 7
-	console.log(postfixEvaluate("5 2 -")); // 3
-	console.log(postfixEvaluate("5 2 *")); // 10
-	console.log(postfixEvaluate("5 2 /")); // 2.5
-	console.log(postfixEvaluate("5 2 **")); // 25
-	console.log(postfixEvaluate("5 2 %")); // 1
+	console.log(evaluatePostfix_bi("5 2 +")); // 7
+	console.log(evaluatePostfix_bi("5 2 -")); // 3
+	console.log(evaluatePostfix_bi("5 2 *")); // 10
+	console.log(evaluatePostfix_bi("5 2 /")); // 2.5
+	console.log(evaluatePostfix_bi("5 2 **")); // 25
+	console.log(evaluatePostfix_bi("5 2 %")); // 1
+})();
+
+// postfix evaluation i++
+
+(() => {
+	console.log("\n\nEvaluate Postfix");
+
+	const evaluatePostfix = expr => {
+		const stack = new Stack();
+		stack.push(...expr.split(" "));
+
+		const operator = stack.pop();
+		const number = parseInt(stack.pop());
+
+		switch (operator) {
+			case "++":
+				return number + 1;
+			case "--":
+				return number - 1;
+			case "**":
+				return number ** number;
+			case "//":
+				return Math.sqrt(number);
+		}
+	};
+
+	console.log(evaluatePostfix("55 ++"));
+	console.log(evaluatePostfix("12 --"));
+	console.log(evaluatePostfix("1 ++") === evaluatePostfix("3 --"));
 })();

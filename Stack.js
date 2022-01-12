@@ -1,6 +1,6 @@
 class Stack {
-	constructor(maxSize) {
-		this.maxSize = maxSize ?? null;
+	constructor(maxSize = Infinity) {
+		this.maxSize = maxSize;
 		this.stack = [];
 	}
 
@@ -8,10 +8,11 @@ class Stack {
 		console.log(this.stack);
 	}
 
-	add(...items) {
-		if (this.maxSize == null) this.stack.push(...items);
-		else if (this.stack.length + [...items].length > this.maxSize) return false;
-		else this.stack.push(...items);
+	// add isFull
+
+	push(...items) {
+		if (this.stack.length + [...items].length > this.maxSize) return false;
+		return this.stack.push(...items);
 	}
 
 	// removes the last added element
